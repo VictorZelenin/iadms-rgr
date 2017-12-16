@@ -1,0 +1,22 @@
+@relation maitre
+
+@attribute patrons {none, some, full}
+@attribute waitEstation {0-10,10-30,30-60,>60}
+@attribute reservation {TRUE, FALSE}
+@attribute bar {TRUE, FALSE}
+@attribute alternative {TRUE, FALSE}
+@attribute sit {yes, no}
+
+@data
+some,0-10,TRUE,FALSE,TRUE,yes
+full,30-60,FALSE,FALSE,TRUE,no
+some,0-10,FALSE,TRUE,FALSE,yes
+full,10-30,FALSE,FALSE,TRUE,yes
+full,>60,TRUE,FALSE,TRUE,no
+some,0-10,TRUE,TRUE,FALSE,yes
+none,0-10,FALSE,TRUE,FALSE,no
+some,0-10,TRUE,FALSE,FALSE,yes
+full,>60,FALSE,TRUE,FALSE,no
+full,10-30,TRUE,TRUE,TRUE,yes
+none,0-10,FALSE,FALSE,FALSE,no
+full,30-60,FALSE,TRUE,TRUE,no
