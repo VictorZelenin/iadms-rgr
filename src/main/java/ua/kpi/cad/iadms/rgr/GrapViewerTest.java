@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 public class GrapViewerTest {
+
     public static void main(String[] args) throws Exception {
         Classifier classifier = buildClassifier();
 
