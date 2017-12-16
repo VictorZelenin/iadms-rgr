@@ -35,7 +35,7 @@ public class DrawableDisplayer {
 
     private void initializeFrame() {
         frame = new JFrame("Decision Tree");
-        frame.setSize(800, 600);
+        frame.setSize(1400, 700);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -51,5 +51,4 @@ public class DrawableDisplayer {
             ((TreeVisualizer) component).fitToScreen();
         }
     }
-
 }

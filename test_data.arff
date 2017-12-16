@@ -9,15 +9,15 @@
 @attribute Decision {Y, M, N}
 
 @data
-P4, R3, Reg1, MD3, RT1, Add3,N
-P2, R1, Reg3, MD4, RT1, Add3,N
-P4, R2, Reg8, MD2, RT1, Add3,N
-P2, R1, Reg7, MD4, RT2, Add3,N
-P1, R3, Reg10, MD4, RT1, Add3,N
-P5, R1, Reg6, MD4, RT2, Add2,N
-P3, R2, Reg4, MD3, RT2, Add1,N
-P2, R4, Reg6, MD3, RT1, Add1,N
-P5, R3, Reg7, MD4, RT2, Add2,N
-P3, R2, Reg1, MD1, RT1, Add1,N
-P4, R1, Reg8, MD4, RT1, Add2,N
-P1, R3, Reg2, MD4, RT1, Add1,N
+P4, R3, Reg1, MD3, RT1, Add3,?
+P2, R1, Reg3, MD4, RT1, Add3,?
+P4, R2, Reg8, MD2, RT1, Add3,?
+P2, R1, Reg7, MD4, RT2, Add3,?
+P1, R3, Reg10, MD4, RT1, Add3,?
+P5, R1, Reg6, MD4, RT2, Add2,?
+P3, R2, Reg4, MD3, RT2, Add1,?
+P2, R4, Reg6, MD3, RT1, Add1,?
+P5, R3, Reg7, MD4, RT2, Add2,?
+P3, R2, Reg1, MD1, RT1, Add1,?
+P4, R1, Reg8, MD4, RT1, Add2,?
+P1, R3, Reg2, MD4, RT1, Add1,?

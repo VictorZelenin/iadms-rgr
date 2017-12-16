@@ -36,6 +36,7 @@ public class Main {
 
         //Print tree
         System.out.println(tree);
+        new DrawableDisplayer(tree).display();
 
         return classifier;
     }
