@@ -10,7 +10,7 @@ import weka.core.converters.ConverterUtils;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class GrapViewerTest {
+public class Main {
 
     public static void main(String[] args) throws Exception {
         Classifier classifier = buildClassifier();
