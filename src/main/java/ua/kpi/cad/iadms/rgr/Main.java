@@ -9,24 +9,11 @@ import weka.core.converters.ArffLoader;
 import java.io.*;
 
 public class Main {
-
-    public static BufferedReader readDataFile(String filename) {
-        BufferedReader inputReader = null;
-
-        try {
-            inputReader = new BufferedReader(new FileReader(filename));
-        } catch (FileNotFoundException ex) {
-            System.err.println("File not found: " + filename);
-        }
-
-        return inputReader;
-    }
-
     public static void main(String[] args) throws Exception {
         //Get File
 
         ArffLoader loader = new ArffLoader();
-        loader.setSource(new File("maitre.arff"));
+        loader.setSource(new File("rgr_train.arff"));
 
         //Get the data
         Instances data = loader.getDataSet();
@@ -48,7 +35,7 @@ public class Main {
 
         //Predictions with test and training set of data
 
-//        BufferedReader datafile = readDataFile("maitre.arff");
+//        BufferedReader datafile = readDataFile("rgr_train.arff");
 //        BufferedReader testfile = readDataFile("maitretest.txt");
 
 //        Instances train = loader.getDataSet();

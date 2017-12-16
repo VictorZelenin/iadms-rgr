@@ -1,0 +1,23 @@
+@relation rgr
+
+@attribute Price {P1, P2, P3, P4, P5}
+@attribute Rooms {R1, R2, R3, R4}
+@attribute Region {Reg1, Reg2, Reg3, Reg4, Reg5, Reg6, Reg7, Reg8, Reg9, Reg10}
+@attribute DistanceToSubway {MD1, MD2, MD3, MD4}
+@attribute RentType {RT1, RT2}
+@attribute Additionally {Add1, Add2, Add3}
+@attribute Decision {Y, M, N}
+
+@data
+P4, R3, Reg1, MD3, RT1, Add3,N
+P2, R1, Reg3, MD4, RT1, Add3,N
+P4, R2, Reg8, MD2, RT1, Add3,N
+P2, R1, Reg7, MD4, RT2, Add3,N
+P1, R3, Reg10, MD4, RT1, Add3,N
+P5, R1, Reg6, MD4, RT2, Add2,N
+P3, R2, Reg4, MD3, RT2, Add1,N
+P2, R4, Reg6, MD3, RT1, Add1,N
+P5, R3, Reg7, MD4, RT2, Add2,N
+P3, R2, Reg1, MD1, RT1, Add1,N
+P4, R1, Reg8, MD4, RT1, Add2,N
+P1, R3, Reg2, MD4, RT1, Add1,N

@@ -1,89 +1,65 @@
 package ua.kpi.cad.iadms.rgr;
 
 import weka.classifiers.Classifier;
-import weka.classifiers.Evaluation;
+import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.J48;
+import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.converters.ArffLoader;
-import weka.gui.treevisualizer.*;
+import weka.core.converters.ConverterUtils;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class GrapViewerTest {
     public static void main(String[] args) throws Exception {
-        ArffLoader loader = new ArffLoader();
-        loader.setSource(new File("maitre.arff"));
+        Classifier classifier = buildClassifier();
 
-        //Get the data
-        Instances data = loader.getDataSet();
-//        reader.close();
+        testClassifier(classifier);
+    }
 
-        //Setting class attribute
-        data.setClassIndex(data.numAttributes() - 1);
+    private static Classifier buildClassifier() throws Exception {
+        Instances trainingData = readDataFromFile("rgr_train.arff");
+
+        trainingData.setClassIndex(trainingData.numAttributes() - 1);
 
         //Make tree
         J48 tree = new J48();
+        String[] options = new String[] {"-U"};
 
-        String[] options = new String[1];
-        options[0] = "-U";
+        FilteredClassifier classifier = new FilteredClassifier();
+        classifier.setClassifier(tree);
+
         tree.setOptions(options);
-        tree.buildClassifier(data);
+        tree.buildClassifier(trainingData);
+        classifier.buildClassifier(trainingData);
 
         //Print tree
         System.out.println(tree);
 
-        //Predictions with test and training set of data
+        return classifier;
+    }
 
-//        BufferedReader datafile = readDataFile("maitre.arff");
-//        BufferedReader testfile = readDataFile("maitretest.txt");
+    private static void testClassifier(Classifier classifier) throws Exception {
+        Instances testData = readDataFromFile("test_data.arff");
+        testData.setClassIndex(testData.numAttributes() - 1);
 
-//        Instances train = loader.getDataSet();
-        data.setClassIndex(data.numAttributes() - 1);  // from somewhere
-//        Instances test = new Instances(testfile);
-        data.setClassIndex(data.numAttributes() - 1);    // from somewhere
-        // train classifier
-        Classifier cls = new J48();
-        cls.buildClassifier(data);
-        // evaluate classifier and print some statistics
-        Evaluation eval = new Evaluation(data);
-//        eval.evaluateModel(cls, test);
-        System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+        PrintWriter printWriter = new PrintWriter(new FileWriter("res.dat"));
+        int index = 1;
+        for (Instance instance : testData) {
+            double v = classifier.classifyInstance(instance);
+            String row = validateInstanceAttrs(instance) + " : " + testData.classAttribute().value((int) v);
+            System.out.println(row);
+            printWriter.println(index + "\t" + row);
+            index++;
+        }
+        printWriter.close();
+    }
 
-        //////------------------------
+    private static Instances readDataFromFile(String filename) throws Exception {
+        return new ConverterUtils.DataSource(filename).getDataSet();
+    }
 
-        weka.core.logging.Logger.log(weka.core.logging.Logger.Level.INFO,
-                "Logging started");
-        // put in the random data generator right here
-        // this call with import java.lang gives me between 0 and 1 Math.random
-        TreeBuild builder = new TreeBuild();
-
-        Node top = null;
-        NodePlace arrange = new PlaceNode2();
-        top = builder.create(new StringReader("digraph atree { top [label=\"the top\"] a [label=\"the first node\"] b [label=\"the second nodes\"] c [label=\"comes off of first\"] top->a top->b b->c }"));
-//            top = builder.create(new FileReader(args[0]));
-
-        // int num = Node.getCount(top,0); NOT USED
-        // System.out.println("counter counted " + num + " nodes");
-        // System.out.println("there are " + num + " nodes");
-        TreeVisualizer a = new TreeVisualizer(null, top, arrange);
-        a.setSize(800, 600);
-//         a.setTree(top);
-        JFrame f = new JFrame();
-        // a.addMouseMotionListener(a);
-        // a.addMouseListener(a);
-        // f.add(a);
-        Container contentPane = f.getContentPane();
-        contentPane.add(a);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        f.setSize(800, 600);
-        f.setVisible(true);
-        // f.
-        // find_prop(top);
-//         a.setTree(top,arrange);//,(num + 1000), num / 2 + 1000);
+    private static String validateInstanceAttrs(Instance instance) {
+        return instance.toString().substring(0, instance.toString().length() - 2);
     }
 }
